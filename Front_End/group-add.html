@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Group</title>
+    <link rel="icon" type="image/x-icon" href="../Front_End/assets/img/x-icon.png">
+    <link rel="stylesheet" href="../Front_End/assets/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Front_End/assets/fonts/fontawesome-free-6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="../Front_End/assets/css/main.css" />
+    <link rel="stylesheet" href="../Front_End/assets/css/base.css" />
+    <script src="../Front_End/assets/js/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+    <!-- Modal layout -->
+    <div class="modal">
+        <div class="modal_overlay"></div>
+
+        <div class="modal_body">
+            <!-- Create form -->
+            <div class="auth-form">
+                <div class="auth-form_container">
+                    <div class="auth-form_header">
+                        <h3 class="auth-form_heading">Create Group</h3>
+                    </div>
+
+                    <form>
+                        <div class="auth-form_form">
+                            <div class="auth-form_group">
+                                <p class="form-create-group">Please enter your group name:</p>
+                                <input type="text" class="auth-form_input" placeholder="Group name" id="groupName">
+                            </div>
+                            <p class="ErrorMessage" id="nameErrorMessage"></p>
+                        </div>
+                        <div class="auth-form_controls">
+                            <button type="button" class="btn btn-primary btn-primary_save" id="save">Save</button>
+                            <button type="button" class="btn btn-normal auth-form_controls-back"><a href="../Front_End/manage_group.html" class="header_navbar-item-back">Cancel</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../Front_End/assets/js/bootstrap.min.js"></script>
+    <script src="../Front_End/assets/js/group.js"></script>
+</body>
+
+</html>

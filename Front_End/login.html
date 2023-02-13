@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/x-icon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <script src="./assets/js/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+    <!-- Modal layout -->
+    <div class="modal">
+        <div class="modal_overlay"></div>
+
+        <div class="modal_body">
+            <!-- Login form -->
+            <div class="auth-form">
+                <div class="auth-form_container">
+                    <div class="auth-form_header">
+                        <h3 class="auth-form_heading">Login</h3>
+                        <span class="auth-form_switch-btn"><a href="./register.html" class="btn-item-back">Register</a></span>
+                    </div>
+
+                    <div class="auth-form_form">
+                        <div class="auth-form_group">
+                            <input type="text" id="username" class="auth-form_input" placeholder="Please enter your user name">
+                        </div>
+                        <div class="auth-form_group">
+                            <input type="password" id="password" class="auth-form_input" placeholder="Please enter your password">
+                        </div>
+                    </div>
+                    <p class="ErrorMessage" id="nameErrorMessage"></p>
+                    <div class="auth-form_aside">
+                        <div class="auth-form_help">
+                            <a href="" class="auth-form_help-link auth-form_help-forgot">Forgot password?</a>
+                            <span class="auth-form_help-separate"></span>
+                            <a href="" class="auth-form_help-link">Help signing in</a>
+                        </div>
+                    </div>
+                    <div class="auth-form_controls">
+                        <button class="btn btn-normal auth-form_controls-back"><a href="./home.html" class="header_navbar-item-back">BACK</a></button>
+                        <button type="button" class="btn btn-primary" id="login">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script>
+        $("#login").click(function(e) {
+            var v_username = $("#username").val();
+            var v_password = $("#password").val();
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/login",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic " + btoa(`${v_username}:${v_password}`));
+                },
+                contentType: "dataType",
+                success: function(response) {
+                    alert("Sign in successfully!");
+
+                    var acc = {
+                        username: v_username,
+                        password: v_password,
+                        accountID: response.accountId,
+                        role: response.role
+                    }
+                    localStorage.setItem("accLogin", JSON.stringify(acc));
+                    window.open("./home.html", "_self");
+                },
+                error: function() {
+                    showNameErrorMessage("The username or password is incorrect!");
+                }
+            });
+        });
+
+        function showNameErrorMessage(message) {
+            document.getElementById("nameErrorMessage").style.display = "block";
+            document.getElementById("nameErrorMessage").innerHTML = message;
+        }
+    </script>
+</body>
+
+</html>

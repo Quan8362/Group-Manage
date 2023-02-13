@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTI</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/x-icon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="header"></div>
+        <div class="app_container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-2">
+                    <div id="sidebar"></div>
+                </div>
+                <div class="col-10 group_info">
+                    <h1 class="group_info_item">Manage Group <i class="fa-solid fa-user-group"></i></h1>
+                    <div class="group_info_item_linkgroup">
+                        <h3>List Group</h3>
+                    </div>
+                    <div class="group_info_item_search">
+                        <div class="header_search">
+                            <div class="header_search-input-wrap">
+                                <input type="text" id="inputSearch" class="header_search-input" placeholder="Nhập tìm kiếm...">
+                            </div>
+                            <button class="header_search-btn" id="search">
+                                <i class="header_search-btn-icon fas fa-magnifying-glass"></i>                                           
+                        </button>
+                            <div class="crud">
+                                <a href="./group-add.html" class="crud_item">
+                                    <i class="fa-sharp fas fa-plus"></i>
+                                </a>
+                                <a href="#" class="crud_item">
+                                    <i class="fa-sharp fas fa-rotate" id="fresh"></i>
+                                </a>
+                                <a class="crud_item" id="delete">
+                                    <i class="fa-sharp fas fa-trash-can"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="stt-group"><input type="checkbox" class="checkbox-group" id="selectAll"></th>
+                                <th>STT</th>
+                                <th>GroupName</th>
+                                <th>Member</th>
+                                <th>Creator</th>
+                                <th>Create Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_group">
+                        </tbody>
+                    </table>
+                    <ul class="pagination manage-group_pagination" id="pagination">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="footer_text">© 2019 - Bản quyền thuộc về Công ty VTI</p>
+        </footer>
+    </div>
+    <script src="./assets/js/jquery-3.6.3.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/group.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.open("./login.html", "_self");
+        }
+    </script>
+</body>
+
+</html>

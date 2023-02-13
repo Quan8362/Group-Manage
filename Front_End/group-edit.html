@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Group</title>
+    <link rel="icon" type="image/x-icon" href="../Front_End/assets/img/x-icon.png">
+    <link rel="stylesheet" href="../Front_End/assets/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Front_End/assets/fonts/fontawesome-free-6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="../Front_End/assets/css/main.css" />
+    <link rel="stylesheet" href="../Front_End/assets/css/base.css" />
+    <script src="../Front_End/assets/js/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+    <!-- Modal layout -->
+    <div class="modal">
+        <div class="modal_overlay"></div>
+
+        <div class="modal_body">
+            <!-- Edit form -->
+            <div class="auth-form">
+                <div class="auth-form_container">
+                    <div class="auth-form_header">
+                        <h3 class="auth-form_heading">Edit Group</h3>
+                    </div>
+                    <form role="form">
+                        <div class="auth-form_form">
+                            <div class="auth-form_group">
+                                <p class="form-create-group">Please enter your group name:</p>
+                                <input id="groupNameForEdit" type="text" class="auth-form_input" placeholder="Group name">
+                                <p class="ErrorMessage" id="nameErrorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="auth-form_controls">
+                            <button type="button" class="btn btn-primary btn-primary_save" onclick="update()">Save</button>
+                            <button type="button" class="btn btn-normal auth-form_controls-back"><a href="../Front_End/manage_group.html" class="header_navbar-item-back">Cancel</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../Front_End/assets/js/bootstrap.min.js"></script>
+    <script src="../Front_End/assets/js/group.js"></script>
+
+    <script>
+        const queryString = window.location.search; //?id=.....
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('id');
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/group/getByGroupId/" + id,
+            dataType: "JSON",
+            success: function(data) {
+                $("#groupNameForEdit").val(data.groupName);
+            }
+        })
+
+        function update() {
+            var name = $("#groupNameForEdit").val();
+
+            if (!name || name.length < 6 || name.length > 30) {
+                // show error message
+                showNameErrorMessage("Group name must be from 6 to 50 characters!");
+                return;
+            } else {
+                var form = {
+                    groupName: name
+                }
+            }
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost:8080/group/edit/" + id,
+                data: JSON.stringify(form),
+                contentType: "application/json",
+                success: function(response) {
+                    alert("Update successfully");
+                    window.open("../Front_End/manage_group.html", "_self");
+                }
+            });
+        }
+
+        function showNameErrorMessage(message) {
+            document.getElementById("nameErrorMessage").style.display = "block";
+            document.getElementById("nameErrorMessage").innerHTML = message;
+        }
+    </script>
+</body>
+
+</html>

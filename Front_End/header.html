@@ -1,0 +1,42 @@
+<header class="header">
+    <nav class="header_navbar">
+        <ul class="header_navbar-list">
+            <li class="header_navbar-item header_navbar-item-has-notify">
+                <a href="" class="header_navbar-item-link"><i class="header_navbar_icon fas fa-bell"></i></a>
+            </li>
+
+            <li class="header_navbar-item header_navbar-item-separate">
+                <a href="./register.html" class="header_navbar-item-register" id="register">Register</a>
+            </li>
+            <li class="header_navbar-item"><a href="./login.html" class="header_navbar-item-login" id="login">Login</a>
+            </li>
+            <li id="usernameLogin" class="header_navbar-item"></li>
+            <li class="header_navbar-item"><a href="#" onclick="logout()" class="header_navbar-item-login"
+                    id="logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="header-with-search">
+        <div class="header_logo">
+            <a href="./home.html" class="header_logo-link">
+                <img src="./assets/img/logo.png" alt="Logo-Shopee" class="header_logo-img">
+            </a>
+        </div>
+        <p class="slogan">CON ĐƯỜNG ĐẾN VỚI DOANH NGHIỆP - ENTERPRISE PASSPORT FOR DEVELOPER</p>
+    </div>
+</header>
+
+<script>
+    var accLocal = JSON.parse(localStorage.getItem("accLogin"));
+    if (accLocal !== null) {
+        var username = accLocal.username;
+        $("#usernameLogin").append("<span>" + accLocal.username + "</span>")
+        $("#login").hide();
+        $("#register").hide();
+        if (accLocal.role != "Admin") {
+            $("#group").hide();
+        }
+    } else {
+        $("#usernameLogin").hide();
+        $("#logout").hide();
+    }
+</script>
